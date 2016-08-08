@@ -32,14 +32,10 @@ var App = React.createClass({
   },
   renderImage: function(item) {
     return (
-     <ImageCaption source={item.source} text={item.text}/>
+     <ImageCaption source={item.source} text={item.text} key={item.id}/>
     );
   }
 });
 
-ReactDOM.render(
-  <ImageCaption/>,
-  document.getElementById('app')
-);
 
 module.exports = App;

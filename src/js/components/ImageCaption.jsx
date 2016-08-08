@@ -6,6 +6,7 @@ var ImageCaption = React.createClass({
     text: React.PropTypes.string.isRequired
   },
   render: function() {
+      console.log(this.props)
     return (
       <figure>
         <img src={this.props.source}/>

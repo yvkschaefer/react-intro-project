@@ -21510,11 +21510,9 @@
 	    );
 	  },
 	  renderImage: function renderImage(item) {
-	    return React.createElement(ImageCaption, { source: item.source, text: item.text });
+	    return React.createElement(ImageCaption, { source: item.source, text: item.text, key: item.id });
 	  }
 	});
-	
-	ReactDOM.render(React.createElement(ImageCaption, null), document.getElementById('app'));
 	
 	module.exports = App;
 
@@ -21534,6 +21532,7 @@
 	    text: React.PropTypes.string.isRequired
 	  },
 	  render: function render() {
+	    console.log(this.props);
 	    return React.createElement(
 	      'figure',
 	      null,
