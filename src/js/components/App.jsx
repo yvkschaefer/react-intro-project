@@ -1,11 +1,11 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 
 var ImageCaption = require('./ImageCaption.jsx');
+var Layout = require('./Layout.jsx');
 
 var imageList = [{
   id: 42,
-  source: "http://placekitten.com/g/210/210",
+  source: "https://placekitten.com/g/210/210",
   text: "Hello kittenz!"
 }, {
   id: 43,
@@ -27,6 +27,12 @@ var App = React.createClass({
         <div>
           {imageList.map(this.renderImage)}
         </div>
+        <hr/>
+        <h2>testing layout</h2>
+        <Layout>
+        <h2>About Us</h2>
+        <p>We are <a href="https://facebook.github.io/react/">React</a> developers!</p>
+        </Layout>
       </main>
     );
   },
