@@ -2,6 +2,7 @@ var React = require('react');
 
 var ImageCaption = require('./ImageCaption.jsx');
 var Layout = require('./Layout.jsx');
+var GuessTheNumber = require('./GuessTheNumber.jsx');
 
 var imageList = [{
   id: 42,
@@ -23,6 +24,9 @@ var App = React.createClass({
       <main>
         <h1>My first React App</h1>
         <hr/>
+        <h2>Guess The Number</h2>
+        <GuessTheNumber numberToGuess={Math.floor(Math.random()*100)}></GuessTheNumber>
+        <hr/>
         <h2>testing Arrays</h2>
         <div>
           {imageList.map(this.renderImage)}
@@ -33,6 +37,7 @@ var App = React.createClass({
         <h2>About Us</h2>
         <p>We are <a href="https://facebook.github.io/react/">React</a> developers!</p>
         </Layout>
+        <hr/>
       </main>
     );
   },

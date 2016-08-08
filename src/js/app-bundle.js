@@ -21469,6 +21469,7 @@
 	
 	var ImageCaption = __webpack_require__(176);
 	var Layout = __webpack_require__(177);
+	var GuessTheNumber = __webpack_require__(178);
 	
 	var imageList = [{
 	  id: 42,
@@ -21496,6 +21497,13 @@
 	        null,
 	        'My first React App'
 	      ),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Guess The Number'
+	      ),
+	      React.createElement(GuessTheNumber, { numberToGuess: Math.floor(Math.random() * 100) }),
 	      React.createElement('hr', null),
 	      React.createElement(
 	        'h2',
@@ -21532,7 +21540,8 @@
 	          ),
 	          ' developers!'
 	        )
-	      )
+	      ),
+	      React.createElement('hr', null)
 	    );
 	  },
 	  renderImage: function renderImage(item) {
@@ -21620,6 +21629,51 @@
 	});
 	
 	module.exports = Layout;
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var GuessTheNumber = React.createClass({
+	    displayName: "GuessTheNumber",
+	
+	    propTypes: {
+	        numberToGuess: React.PropTypes.number.isRequired
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            "main",
+	            null,
+	            React.createElement(
+	                "h3",
+	                null,
+	                "Can you guess the number? Type a guess, click, and see"
+	            ),
+	            React.createElement("input", { type: "text", ref: "userGuess" }),
+	            React.createElement(
+	                "button",
+	                { onClick: this._handleButtonClick },
+	                "was I right?"
+	            )
+	        );
+	    },
+	    _handleButtonClick: function _handleButtonClick() {
+	        console.log("Number to guess", this.props.numberToGuess);
+	        if (this.refs.userGuess.value < this.props.numberToGuess) {
+	            alert('Try Higher!');
+	        } else if (this.refs.userGuess.value > this.props.numberToGuess) {
+	            alert('Try Lower!');
+	        } else {
+	            alert('You are correct!');
+	        }
+	    }
+	});
+	
+	module.exports = GuessTheNumber;
 
 /***/ }
 /******/ ]);
