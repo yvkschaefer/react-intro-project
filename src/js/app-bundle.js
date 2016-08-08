@@ -21483,7 +21483,13 @@
 	        'My first React App'
 	      ),
 	      React.createElement('hr', null),
-	      React.createElement(ImageCaption, { source: 'http://placekitten.com/g/210/210', text: 'This is a kittenz!' })
+	      React.createElement(
+	        'h2',
+	        null,
+	        'testing ImageCaption'
+	      ),
+	      React.createElement(ImageCaption, { source: 'http://i.imgur.com/D8JWn.jpg', text: 'rainbow kitty -- so intenz!' }),
+	      React.createElement('hr', null)
 	    );
 	  }
 	});

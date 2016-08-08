@@ -9,7 +9,9 @@ var App = React.createClass({
       <main>
         <h1>My first React App</h1>
         <hr/>
-        <ImageCaption source="http://placekitten.com/g/210/210" text="This is a kittenz!" />
+        <h2>testing ImageCaption</h2>
+        <ImageCaption source="http://i.imgur.com/D8JWn.jpg" text="rainbow kitty -- so intenz!" />
+        <hr/>
       </main>
     );
   }
