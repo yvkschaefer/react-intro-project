@@ -4,6 +4,7 @@ var ImageCaption = require('./ImageCaption.jsx');
 var Layout = require('./Layout.jsx');
 var GuessTheNumber = require('./GuessTheNumber.jsx');
 var YouClicked = require('./YouClicked.jsx');
+var CharacterCounter = require('./CharacterCounter');
 
 var imageList = [{
   id: 42,
@@ -24,6 +25,9 @@ var App = React.createClass({
     return (
       <main>
         <h1>My first React App</h1>
+        <hr/>
+        <h2>Character Counter</h2>
+        <CharacterCounter></CharacterCounter>
         <hr/>
         <h2>You Clicked</h2>
         <YouClicked></YouClicked>

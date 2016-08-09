@@ -21471,6 +21471,7 @@
 	var Layout = __webpack_require__(177);
 	var GuessTheNumber = __webpack_require__(178);
 	var YouClicked = __webpack_require__(179);
+	var CharacterCounter = __webpack_require__(180);
 	
 	var imageList = [{
 	  id: 42,
@@ -21498,6 +21499,13 @@
 	        null,
 	        'My first React App'
 	      ),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Character Counter'
+	      ),
+	      React.createElement(CharacterCounter, null),
 	      React.createElement('hr', null),
 	      React.createElement(
 	        'h2',
@@ -21766,6 +21774,45 @@
 	});
 	
 	module.exports = YouClicked;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var CharacterCounter = React.createClass({
+	    displayName: "CharacterCounter",
+	
+	    getInitialState: function getInitialState() {
+	        return {
+	            currentInput: 0
+	        };
+	    },
+	    _handleInput: function _handleInput(event) {
+	        var value = event.target.value;
+	        this.setState({
+	            currentInput: value.length
+	        });
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement("input", { type: "text", onInput: this._handleInput }),
+	            React.createElement(
+	                "h3",
+	                null,
+	                "Character Counter: "
+	            ),
+	            this.state.currentInput
+	        );
+	    }
+	});
+	
+	module.exports = CharacterCounter;
 
 /***/ }
 /******/ ]);
