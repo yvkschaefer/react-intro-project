@@ -21474,6 +21474,7 @@
 	var CharacterCounter = __webpack_require__(180);
 	var CharacterLimit = __webpack_require__(181);
 	var NumberGuessingGame = __webpack_require__(182);
+	var GitHubProfile = __webpack_require__(183);
 	
 	var imageList = [{
 	  id: 42,
@@ -21501,6 +21502,13 @@
 	        null,
 	        'My first React App'
 	      ),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'h2',
+	        null,
+	        'GitHubProfile'
+	      ),
+	      React.createElement(GitHubProfile, { username: '' }),
 	      React.createElement('hr', null),
 	      React.createElement(
 	        'h2',
@@ -22009,6 +22017,28 @@
 	});
 	
 	module.exports = NumberGuessingGame;
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var GitHubProfile = React.createClass({
+	    displayName: 'GitHubProfile',
+	
+	    propTypes: {
+	        username: React.PropTypes.string.isRequired
+	    },
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
+	    render: function render() {}
+	});
+	
+	module.exports = GitHubProfile;
 
 /***/ }
 /******/ ]);

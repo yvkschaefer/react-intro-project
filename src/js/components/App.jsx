@@ -7,6 +7,7 @@ var YouClicked = require('./YouClicked.jsx');
 var CharacterCounter = require('./CharacterCounter');
 var CharacterLimit = require('./CharacterLimit');
 var NumberGuessingGame = require('./NumberGuessingGame');
+var GitHubProfile = require('./GitHubProfile');
 
 var imageList = [{
   id: 42,
@@ -27,6 +28,9 @@ var App = React.createClass({
     return (
       <main>
         <h1>My first React App</h1>
+        <hr/>
+        <h2>GitHubProfile</h2>
+        <GitHubProfile username=""></GitHubProfile>
         <hr/>
         <h2>Number Guessing Game</h2>
         <NumberGuessingGame></NumberGuessingGame>
