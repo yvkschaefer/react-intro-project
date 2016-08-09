@@ -21,7 +21,7 @@ var CharacterLimit = React.createClass({
         return (
             <div>
                 <input id="characterLimitInput" ref="theInput" type="text" value={this.state.currentInput} onInput={this._handleInput} />
-                <h4>{this.props.limit - this.state.currentInput.length} characters remaining</h4>
+                <h4 id="charactersRemaining">{this.props.limit - this.state.currentInput.length} characters remaining</h4>
             </div>
         );
     }

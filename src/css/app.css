@@ -1,7 +1,11 @@
-h4 {
+#charactersRemaining {
     font-family: cursive;
 }
 
 #characterLimitInput {
     width: 20em;
+}
+
+#message {
+    font-family: monospace;
 }

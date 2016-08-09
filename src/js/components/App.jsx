@@ -6,6 +6,7 @@ var GuessTheNumber = require('./GuessTheNumber.jsx');
 var YouClicked = require('./YouClicked.jsx');
 var CharacterCounter = require('./CharacterCounter');
 var CharacterLimit = require('./CharacterLimit');
+var NumberGuessingGame = require('./NumberGuessingGame');
 
 var imageList = [{
   id: 42,
@@ -26,6 +27,9 @@ var App = React.createClass({
     return (
       <main>
         <h1>My first React App</h1>
+        <hr/>
+        <h2>Number Guessing Game</h2>
+        <NumberGuessingGame></NumberGuessingGame>
         <hr/>
         <h2>Character Limit</h2>
         <CharacterLimit limit={140}></CharacterLimit>

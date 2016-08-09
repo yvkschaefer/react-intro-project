@@ -21473,6 +21473,7 @@
 	var YouClicked = __webpack_require__(179);
 	var CharacterCounter = __webpack_require__(180);
 	var CharacterLimit = __webpack_require__(181);
+	var NumberGuessingGame = __webpack_require__(182);
 	
 	var imageList = [{
 	  id: 42,
@@ -21500,6 +21501,13 @@
 	        null,
 	        'My first React App'
 	      ),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Number Guessing Game'
+	      ),
+	      React.createElement(NumberGuessingGame, null),
 	      React.createElement('hr', null),
 	      React.createElement(
 	        'h2',
@@ -21856,7 +21864,7 @@
 	            React.createElement('input', { id: 'characterLimitInput', ref: 'theInput', type: 'text', value: this.state.currentInput, onInput: this._handleInput }),
 	            React.createElement(
 	                'h4',
-	                null,
+	                { id: 'charactersRemaining' },
 	                this.props.limit - this.state.currentInput.length,
 	                ' characters remaining'
 	            )
@@ -21865,6 +21873,142 @@
 	});
 	
 	module.exports = CharacterLimit;
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var NumberGuessingGame = React.createClass({
+	    displayName: 'NumberGuessingGame',
+	
+	    getInitialState: function getInitialState() {
+	        return {
+	            gameStatus: 'playing',
+	            remainingGuesses: 5,
+	            guesses: [],
+	            numberToGuess: Math.floor(Math.random() * 100)
+	        };
+	    },
+	    _startGame: function _startGame() {
+	        this.setState({
+	            gameStatus: 'playing',
+	            remainingGuesses: 5,
+	            guesses: [],
+	            numberToGuess: Math.floor(Math.random() * 100)
+	        });
+	    },
+	    _checkGuess: function _checkGuess() {
+	        var newArr = [].concat(this.state.guesses);
+	
+	        var state = {
+	            guesses: newArr
+	        };
+	        var userGuess = Number(this.refs.theInput.value);
+	        var numberToGuess = this.state.numberToGuess;
+	        if (this.state.remainingGuesses > 1) {
+	            state.remainingGuesses = this.state.remainingGuesses - 1;
+	            state.guesses.push(userGuess);
+	            if (numberToGuess === userGuess) {
+	                state.gameStatus = 'win';
+	            } else if (numberToGuess < userGuess) {
+	                state.msg = 'lower';
+	            } else if (numberToGuess > userGuess) {
+	                state.msg = 'higher';
+	            }
+	        } else {
+	            state.gameStatus = 'lose';
+	        }
+	        this.setState(state);
+	    },
+	    renderWinLose: function renderWinLose() {
+	        var gameStatus = this.state.gameStatus;
+	        var gameStatusText;
+	        var loserMessage;
+	
+	        if (gameStatus === 'win') {
+	            gameStatusText = 'YOU WIN';
+	            loserMessage = null;
+	        } else if (gameStatus === 'lose') {
+	            gameStatusText = 'YOU LOSE';
+	            loserMessage = 'the number was ' + this.state.numberToGuess;
+	        }
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'h3',
+	                null,
+	                gameStatusText
+	            ),
+	            React.createElement(
+	                'h4',
+	                { id: 'message' },
+	                loserMessage
+	            ),
+	            React.createElement(
+	                'button',
+	                { onClick: this._startGame },
+	                'START GAME'
+	            )
+	        );
+	    },
+	    renderPlayingStatus: function renderPlayingStatus() {
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'h3',
+	                null,
+	                'guess a number between 1 and 100'
+	            ),
+	            React.createElement(
+	                'h3',
+	                null,
+	                'remaining tries: ',
+	                this.state.remainingGuesses
+	            ),
+	            React.createElement('input', { ref: 'theInput', type: 'text' }),
+	            React.createElement(
+	                'button',
+	                { onClick: this._checkGuess },
+	                'GUESS'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                'your guesses: ',
+	                this.state.guesses.toString()
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                this.state.msg
+	            )
+	        );
+	    },
+	
+	    render: function render() {
+	        if (this.state.gameStatus == 'playing') {
+	            return React.createElement(
+	                'div',
+	                null,
+	                this.renderPlayingStatus()
+	            );
+	        } else {
+	            return React.createElement(
+	                'div',
+	                null,
+	                this.renderWinLose()
+	            );
+	        }
+	    }
+	});
+	
+	module.exports = NumberGuessingGame;
 
 /***/ }
 /******/ ]);
