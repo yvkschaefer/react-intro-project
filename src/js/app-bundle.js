@@ -21826,38 +21826,40 @@
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	var React = __webpack_require__(1);
 	
 	var CharacterLimit = React.createClass({
-	    displayName: "CharacterLimit",
+	    displayName: 'CharacterLimit',
 	
 	    propTypes: {
-	        limit: React.propTypes.number.isRequired
+	        limit: React.PropTypes.number.isRequired
 	    },
 	    getInitialState: function getInitialState() {
 	        return {
-	            currentInput: 0
+	            currentInput: ''
 	        };
 	    },
-	    _handleInput: function _handleInput(event) {
-	        var value = event.target.value;
-	        this.setState({
-	            currentInput: value.length
-	        });
+	    _handleInput: function _handleInput() {
+	        var value = this.refs.theInput.value;
+	        if (value.length <= this.props.limit) {
+	            this.setState({
+	                currentInput: value
+	            });
+	        }
 	    },
 	    render: function render() {
 	        return React.createElement(
-	            "div",
+	            'div',
 	            null,
-	            React.createElement("input", { type: "text", limit: "userLimit", value: "hello", onInput: this._handleInput }),
+	            React.createElement('input', { id: 'characterLimitInput', ref: 'theInput', type: 'text', value: this.state.currentInput, onInput: this._handleInput }),
 	            React.createElement(
-	                "h3",
+	                'h4',
 	                null,
-	                "Character Counter: "
-	            ),
-	            this.state.currentInput
+	                this.props.limit - this.state.currentInput.length,
+	                ' characters remaining'
+	            )
 	        );
 	    }
 	});

@@ -2,28 +2,30 @@ var React = require('react');
 
 var CharacterLimit = React.createClass({
     propTypes: {
-        limit: React.propTypes.number.isRequired
+        limit: React.PropTypes.number.isRequired
     },
-    getInitialState: function(){
+    getInitialState: function() {
         return {
-            currentInput: 0
+            currentInput: ''
         };
     },
-    _handleInput: function(event){
-    var value = event.target.value;
-        this.setState({
-            currentInput: value.length
-        });
+    _handleInput: function() {
+        var value = this.refs.theInput.value;
+        if (value.length <= this.props.limit) {
+            this.setState({
+                currentInput: value
+            });
+        }
     },
-    render: function(){
-        return(
+    render: function() {
+        return (
             <div>
-                <input type="text" limit="userLimit" value="hello" onInput={this._handleInput}/>
-                <h3>Character Counter: </h3>
-                {this.state.currentInput}
+                <input id="characterLimitInput" ref="theInput" type="text" value={this.state.currentInput} onInput={this._handleInput} />
+                <h4>{this.props.limit - this.state.currentInput.length} characters remaining</h4>
             </div>
         );
     }
 });
+
 
 module.exports = CharacterLimit;
