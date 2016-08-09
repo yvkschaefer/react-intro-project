@@ -7,7 +7,7 @@ var GuessTheNumber = React.createClass({
     render: function(){
         return (
             <main>
-                <h3>Can you guess the number? Type a guess, click, and see</h3>
+                <h3>Guess a number between 0 and 100</h3>
                 <input type="text" ref="userGuess" />
                 <button onClick={this._handleButtonClick}>was I right?</button>
             </main>

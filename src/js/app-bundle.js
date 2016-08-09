@@ -21470,6 +21470,7 @@
 	var ImageCaption = __webpack_require__(176);
 	var Layout = __webpack_require__(177);
 	var GuessTheNumber = __webpack_require__(178);
+	var YouClicked = __webpack_require__(179);
 	
 	var imageList = [{
 	  id: 42,
@@ -21497,6 +21498,13 @@
 	        null,
 	        'My first React App'
 	      ),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'h2',
+	        null,
+	        'You Clicked'
+	      ),
+	      React.createElement(YouClicked, null),
 	      React.createElement('hr', null),
 	      React.createElement(
 	        'h2',
@@ -21651,7 +21659,7 @@
 	            React.createElement(
 	                "h3",
 	                null,
-	                "Can you guess the number? Type a guess, click, and see"
+	                "Guess a number between 0 and 100"
 	            ),
 	            React.createElement("input", { type: "text", ref: "userGuess" }),
 	            React.createElement(
@@ -21674,6 +21682,90 @@
 	});
 	
 	module.exports = GuessTheNumber;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var YouClicked = React.createClass({
+	    displayName: "YouClicked",
+	
+	    getInitialState: function getInitialState() {
+	        return {
+	            timesClicked: 0,
+	            timesReset: 0
+	        };
+	    },
+	    resetMessage: function resetMessage() {
+	        var resetNumber = this.state.timesReset;
+	        if (resetNumber === 0) {
+	            return null;
+	        } else if (resetNumber === 1) {
+	            return "You have reset " + resetNumber + " time";
+	        } else {
+	            return "You have reset " + resetNumber + " times";
+	        }
+	    },
+	    _handleButtonClick: function _handleButtonClick() {
+	        this.setState({
+	            timesClicked: this.state.timesClicked + 1
+	        });
+	    },
+	    _handleResetButton: function _handleResetButton() {
+	        this.setState({
+	            timesClicked: 0,
+	            timesReset: this.state.timesReset + 1
+	        });
+	    },
+	    render: function render() {
+	        var that = this;
+	
+	        function renderMessage() {
+	            var message = that.state.timesClicked;
+	            if (message === 0) {
+	                return "You have not clicked the button";
+	            } else if (message === 1) {
+	                return "You have clicked the button once";
+	            } else if (message === 2) {
+	                return "You have clicked the button twice";
+	            } else {
+	                return "You have clicked the button " + that.state.timesClicked + " times";
+	            }
+	        }
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "button",
+	                { onClick: this._handleButtonClick },
+	                "click!"
+	            ),
+	            React.createElement(
+	                "button",
+	                { onClick: this._handleResetButton },
+	                "reset"
+	            ),
+	            React.createElement(
+	                "p",
+	                null,
+	                " ",
+	                renderMessage()
+	            ),
+	            React.createElement(
+	                "p",
+	                null,
+	                " ",
+	                this.resetMessage()
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = YouClicked;
 
 /***/ }
 /******/ ]);

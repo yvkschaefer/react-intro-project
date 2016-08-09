@@ -3,6 +3,7 @@ var React = require('react');
 var ImageCaption = require('./ImageCaption.jsx');
 var Layout = require('./Layout.jsx');
 var GuessTheNumber = require('./GuessTheNumber.jsx');
+var YouClicked = require('./YouClicked.jsx');
 
 var imageList = [{
   id: 42,
@@ -23,6 +24,9 @@ var App = React.createClass({
     return (
       <main>
         <h1>My first React App</h1>
+        <hr/>
+        <h2>You Clicked</h2>
+        <YouClicked></YouClicked>
         <hr/>
         <h2>Guess The Number</h2>
         <GuessTheNumber numberToGuess={Math.floor(Math.random()*100)}></GuessTheNumber>
