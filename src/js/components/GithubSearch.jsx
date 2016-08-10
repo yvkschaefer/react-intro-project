@@ -8,7 +8,6 @@ var GithubSearch = React.createClass({
     return {};
   },
   _handleSearch: function(searchTerm){
-      console.log('search Term: ', searchTerm);
       this.setState({
           user: searchTerm
       });

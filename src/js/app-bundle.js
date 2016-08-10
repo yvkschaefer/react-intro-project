@@ -32127,7 +32127,6 @@
 	    return {};
 	  },
 	  _handleSearch: function _handleSearch(searchTerm) {
-	    console.log('search Term: ', searchTerm);
 	    this.setState({
 	      user: searchTerm
 	    });
@@ -32204,7 +32203,7 @@
 	        };
 	    },
 	    fetchData: function fetchData() {
-	        var url = 'https://api.github.com/users/' + this.props.username;
+	        var url = 'https://api.github.com/users/' + this.props.username + '?access_token=6d7ffda3c063706d6b19b0321903ee347f9c1d8b';
 	        var that = this;
 	
 	        $.getJSON(url).then(function (response) {
