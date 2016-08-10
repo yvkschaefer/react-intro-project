@@ -9,3 +9,19 @@
 #message {
     font-family: monospace;
 }
+
+.github-user {
+    display: flex;
+}
+
+.github-user__avatar {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+}
+
+.github-user__info {
+    font-family: Raleway, sans-serif;
+    margin-left: 0.2em;
+    color: #19195B;
+}

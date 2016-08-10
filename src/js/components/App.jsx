@@ -1,5 +1,6 @@
 var React = require('react');
 
+
 var ImageCaption = require('./ImageCaption.jsx');
 var Layout = require('./Layout.jsx');
 var GuessTheNumber = require('./GuessTheNumber.jsx');
@@ -24,22 +25,24 @@ var imageList = [{
 }];
 
 var App = React.createClass({
+  
   render: function() {
+    
     return (
       <main>
         <h1>My first React App</h1>
         <hr/>
         <h2>GitHubProfile</h2>
-        <GitHubProfile username=""></GitHubProfile>
+        <GitHubProfile username="yvkschaefer"></GitHubProfile>
         <hr/>
         <h2>Number Guessing Game</h2>
-        <NumberGuessingGame></NumberGuessingGame>
+        <NumberGuessingGame/>
         <hr/>
         <h2>Character Limit</h2>
         <CharacterLimit limit={140}></CharacterLimit>
         <hr/>
         <h2>Character Counter</h2>
-        <CharacterCounter></CharacterCounter>
+        <CharacterCounter/>
         <hr/>
         <h2>You Clicked</h2>
         <YouClicked></YouClicked>
@@ -63,7 +66,7 @@ var App = React.createClass({
   },
   renderImage: function(item) {
     return (
-     <ImageCaption source={item.source} text={item.text} key={item.id}/>
+      <ImageCaption source={item.source} text={item.text} key={item.id}/>
     );
   }
 });
