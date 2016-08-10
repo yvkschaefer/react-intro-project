@@ -1,7 +1,7 @@
 var React = require('react');
 var $ = require('jquery');
 
-var GitHubProfile = React.createClass({
+var GithubProfile = React.createClass({
     propTypes: {
         username: React.PropTypes.string.isRequired
     },
@@ -10,7 +10,7 @@ var GitHubProfile = React.createClass({
             user: {}
         };
     },
-    componentDidMount: function() {
+    fetchData: function() {
         var url = `https://api.github.com/users/${this.props.username}`;
         var that = this;
 
@@ -21,6 +21,14 @@ var GitHubProfile = React.createClass({
                 });
             });
 
+    },
+    componentDidMount: function(fetchData){
+        this.fetchData();
+    },
+    componentDidUpdate: function(){
+        if(this.fetchData.username !== this.props.username){
+            this.fetchData();
+        }
     },
     render: function() {
         if (!this.state.user) {
@@ -39,4 +47,4 @@ var GitHubProfile = React.createClass({
     }
 });
 
-module.exports = GitHubProfile;
+module.exports = GithubProfile;

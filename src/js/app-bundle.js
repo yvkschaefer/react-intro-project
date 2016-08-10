@@ -21474,7 +21474,8 @@
 	var CharacterCounter = __webpack_require__(180);
 	var CharacterLimit = __webpack_require__(181);
 	var NumberGuessingGame = __webpack_require__(182);
-	var GitHubProfile = __webpack_require__(183);
+	var GithubProfile = __webpack_require__(187);
+	var GithubSearch = __webpack_require__(185);
 	
 	var imageList = [{
 	  id: 42,
@@ -21508,9 +21509,16 @@
 	      React.createElement(
 	        'h2',
 	        null,
-	        'GitHubProfile'
+	        'Github Search'
 	      ),
-	      React.createElement(GitHubProfile, { username: 'yvkschaefer' }),
+	      React.createElement(GithubSearch, null),
+	      React.createElement('hr', null),
+	      React.createElement(
+	        'h2',
+	        null,
+	        'Github Profile'
+	      ),
+	      React.createElement(GithubProfile, { username: 'yvkschaefer' }),
 	      React.createElement('hr', null),
 	      React.createElement(
 	        'h2',
@@ -22021,80 +22029,7 @@
 	module.exports = NumberGuessingGame;
 
 /***/ },
-/* 183 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	var $ = __webpack_require__(184);
-	
-	var GitHubProfile = React.createClass({
-	    displayName: 'GitHubProfile',
-	
-	    propTypes: {
-	        username: React.PropTypes.string.isRequired
-	    },
-	    getInitialState: function getInitialState() {
-	        return {
-	            user: {}
-	        };
-	    },
-	    componentDidMount: function componentDidMount() {
-	        var url = 'https://api.github.com/users/' + this.props.username;
-	        var that = this;
-	
-	        $.getJSON(url).then(function (response) {
-	            that.setState({
-	                user: response
-	            });
-	        });
-	    },
-	    render: function render() {
-	        if (!this.state.user) {
-	            return React.createElement(
-	                'div',
-	                null,
-	                'LOADING INFO...'
-	            );
-	        }
-	        var user = this.state.user;
-	        return React.createElement(
-	            'div',
-	            { className: 'github-user' },
-	            React.createElement('img', { className: 'github-user__avatar', src: user.avatar_url }),
-	            React.createElement(
-	                'div',
-	                { className: 'github-user__info' },
-	                React.createElement(
-	                    'p',
-	                    null,
-	                    React.createElement(
-	                        'strong',
-	                        null,
-	                        user.login,
-	                        ' (',
-	                        user.name,
-	                        ')'
-	                    )
-	                ),
-	                React.createElement(
-	                    'p',
-	                    null,
-	                    React.createElement(
-	                        'strong',
-	                        null,
-	                        user.bio
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-	
-	module.exports = GitHubProfile;
-
-/***/ },
+/* 183 */,
 /* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -32173,6 +32108,162 @@
 	return jQuery;
 	} );
 
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var GithubSearchForm = __webpack_require__(186);
+	var GithubProfile = __webpack_require__(187);
+	
+	var GithubSearch = React.createClass({
+	  displayName: 'GithubSearch',
+	
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+	  _handleSearch: function _handleSearch(searchTerm) {
+	    console.log('search Term: ', searchTerm);
+	    this.setState({
+	      user: searchTerm
+	    });
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(GithubSearchForm, { onSearch: this._handleSearch }),
+	      this.state.user ? React.createElement(GithubProfile, { username: this.state.user }) : null
+	    );
+	  }
+	});
+	
+	module.exports = GithubSearch;
+
+/***/ },
+/* 186 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(1);
+	
+	var GithubSearchForm = React.createClass({
+	  displayName: "GithubSearchForm",
+	
+	  propTypes: {
+	    onSearch: React.PropTypes.func.isRequired
+	  },
+	  _handleSubmit: function _handleSubmit(e) {
+	    e.preventDefault();
+	    this.props.onSearch(this.refs.userInput.value);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      "form",
+	      { id: "githubSearchForm", onSubmit: this._handleSubmit },
+	      React.createElement(
+	        "p",
+	        null,
+	        "Enter a GitHub username:"
+	      ),
+	      React.createElement("input", { ref: "userInput" }),
+	      React.createElement(
+	        "button",
+	        null,
+	        "Go!"
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = GithubSearchForm;
+
+/***/ },
+/* 187 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var $ = __webpack_require__(184);
+	
+	var GithubProfile = React.createClass({
+	    displayName: 'GithubProfile',
+	
+	    propTypes: {
+	        username: React.PropTypes.string.isRequired
+	    },
+	    getInitialState: function getInitialState() {
+	        return {
+	            user: {}
+	        };
+	    },
+	    fetchData: function fetchData() {
+	        var url = 'https://api.github.com/users/' + this.props.username;
+	        var that = this;
+	
+	        $.getJSON(url).then(function (response) {
+	            that.setState({
+	                user: response
+	            });
+	        });
+	    },
+	    componentDidMount: function componentDidMount(fetchData) {
+	        this.fetchData();
+	    },
+	    componentDidUpdate: function componentDidUpdate() {
+	        if (this.fetchData.username !== this.props.username) {
+	            this.fetchData();
+	        }
+	    },
+	    render: function render() {
+	        if (!this.state.user) {
+	            return React.createElement(
+	                'div',
+	                null,
+	                'LOADING INFO...'
+	            );
+	        }
+	        var user = this.state.user;
+	        return React.createElement(
+	            'div',
+	            { className: 'github-user' },
+	            React.createElement('img', { className: 'github-user__avatar', src: user.avatar_url }),
+	            React.createElement(
+	                'div',
+	                { className: 'github-user__info' },
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    React.createElement(
+	                        'strong',
+	                        null,
+	                        user.login,
+	                        ' (',
+	                        user.name,
+	                        ')'
+	                    )
+	                ),
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    React.createElement(
+	                        'strong',
+	                        null,
+	                        user.bio
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = GithubProfile;
 
 /***/ }
 /******/ ]);
